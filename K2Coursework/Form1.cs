@@ -13,8 +13,9 @@ namespace K2Coursework
     public partial class Form1 : Form
     {
         List<Particle> particles = new List<Particle>();
-        Emitter emitter = new Emitter();
+        Emitter emitter;
         public int stoper;
+        Color temp = Color.Black;
 
 
         public Form1()
@@ -25,7 +26,8 @@ namespace K2Coursework
             emitter = new Emitter
             {
                 Width = canvas.Width / 2,
-                Heights = canvas.Height
+                Heights = canvas.Height,
+
             };
 
         }
@@ -76,5 +78,26 @@ namespace K2Coursework
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void redColorBox_Click(object sender, EventArgs e)
+        {
+            temp = Color.Red;
+        }
+
+        private void greenColorBox_Click(object sender, EventArgs e)
+        {
+            temp = Color.Green;
+        }
+
+        private void yellowColorBox_Click(object sender, EventArgs e)
+        {
+            temp = Color.Yellow;
+        }
+        
     }
 }
