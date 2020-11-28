@@ -14,6 +14,7 @@ namespace K2Coursework
     {
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
+
         public int stoper;
 
 
@@ -102,16 +103,52 @@ namespace K2Coursework
             switch (value)
             {
                 case 2:
-                    emitter.ColorTo = Color.Red;
+                    trackBar2.Value = 1;
+                    minSpeed.Value = 1;
+                    maxSpeed.Value = 6;
+
+                    this.emitter = new Emitter
+                    {
+                        Width = canvas.Width / 2,
+                        Heights = canvas.Height,
+                        ColorTo = Color.Red,
+                        MinSpeed = 1,
+                        MaxSpeed = 7
+
+                    };
+                    emitters.Add(this.emitter);
                     break;
                 case 3:
-                    emitter.ColorTo = Color.Green;
-                    break;
-                case 4:
-                    emitter.ColorTo = Color.Yellow;
+                    trackBar2.Value = 1;
+                    minSpeed.Value = 1;
+                    maxSpeed.Value = 6;
+
+                    this.emitter = new Emitter
+                    {
+                        Width = canvas.Width / 2,
+                        Heights = canvas.Height,
+                        ColorTo = Color.Green,
+                        MinSpeed = 1,
+                        MaxSpeed = 7
+
+                    };
+                    emitters.Add(this.emitter);
                     break;
                 default:
-                    emitter.ColorTo = Color.Black;
+                    trackBar2.Value = 1;
+                    minSpeed.Value = 1;
+                    maxSpeed.Value = 6;
+
+                    this.emitter = new Emitter
+                    {
+                        Width = canvas.Width / 2,
+                        Heights = canvas.Height,
+                        ColorTo = Color.Black,
+                        MinSpeed = 1,
+                        MaxSpeed = 7
+
+                    };
+                    emitters.Add(this.emitter);
                     break;
             }
         }
