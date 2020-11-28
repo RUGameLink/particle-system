@@ -39,11 +39,17 @@
             this.redColorBox = new System.Windows.Forms.PictureBox();
             this.greenColorBox = new System.Windows.Forms.PictureBox();
             this.yellowColorBox = new System.Windows.Forms.PictureBox();
+            this.minSpeed = new System.Windows.Forms.TrackBar();
+            this.maxSpeed = new System.Windows.Forms.TrackBar();
+            this.colorValue = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.redColorBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenColorBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yellowColorBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorValue)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
@@ -73,7 +79,7 @@
             // trackBar2
             // 
             this.trackBar2.Location = new System.Drawing.Point(630, 123);
-            this.trackBar2.Maximum = 4;
+            this.trackBar2.Maximum = 6;
             this.trackBar2.Minimum = 1;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(104, 45);
@@ -104,38 +110,71 @@
             // redColorBox
             // 
             this.redColorBox.Image = ((System.Drawing.Image)(resources.GetObject("redColorBox.Image")));
-            this.redColorBox.Location = new System.Drawing.Point(647, 185);
+            this.redColorBox.Location = new System.Drawing.Point(661, 248);
             this.redColorBox.Name = "redColorBox";
-            this.redColorBox.Size = new System.Drawing.Size(75, 28);
+            this.redColorBox.Size = new System.Drawing.Size(20, 28);
             this.redColorBox.TabIndex = 6;
             this.redColorBox.TabStop = false;
-            this.redColorBox.Click += new System.EventHandler(this.redColorBox_Click);
             // 
             // greenColorBox
             // 
             this.greenColorBox.Image = ((System.Drawing.Image)(resources.GetObject("greenColorBox.Image")));
-            this.greenColorBox.Location = new System.Drawing.Point(647, 219);
+            this.greenColorBox.Location = new System.Drawing.Point(687, 248);
             this.greenColorBox.Name = "greenColorBox";
-            this.greenColorBox.Size = new System.Drawing.Size(75, 28);
+            this.greenColorBox.Size = new System.Drawing.Size(14, 28);
             this.greenColorBox.TabIndex = 7;
             this.greenColorBox.TabStop = false;
-            this.greenColorBox.Click += new System.EventHandler(this.greenColorBox_Click);
             // 
             // yellowColorBox
             // 
             this.yellowColorBox.Image = ((System.Drawing.Image)(resources.GetObject("yellowColorBox.Image")));
-            this.yellowColorBox.Location = new System.Drawing.Point(647, 253);
+            this.yellowColorBox.Location = new System.Drawing.Point(707, 248);
             this.yellowColorBox.Name = "yellowColorBox";
-            this.yellowColorBox.Size = new System.Drawing.Size(75, 28);
+            this.yellowColorBox.Size = new System.Drawing.Size(17, 28);
             this.yellowColorBox.TabIndex = 8;
             this.yellowColorBox.TabStop = false;
-            this.yellowColorBox.Click += new System.EventHandler(this.yellowColorBox_Click);
+            // 
+            // minSpeed
+            // 
+            this.minSpeed.Location = new System.Drawing.Point(630, 306);
+            this.minSpeed.Maximum = 3;
+            this.minSpeed.Minimum = 1;
+            this.minSpeed.Name = "minSpeed";
+            this.minSpeed.Size = new System.Drawing.Size(104, 45);
+            this.minSpeed.TabIndex = 9;
+            this.minSpeed.Value = 1;
+            this.minSpeed.Scroll += new System.EventHandler(this.minSpeed_Scroll);
+            // 
+            // maxSpeed
+            // 
+            this.maxSpeed.Location = new System.Drawing.Point(630, 357);
+            this.maxSpeed.Maximum = 8;
+            this.maxSpeed.Minimum = 4;
+            this.maxSpeed.Name = "maxSpeed";
+            this.maxSpeed.Size = new System.Drawing.Size(104, 45);
+            this.maxSpeed.TabIndex = 10;
+            this.maxSpeed.Value = 6;
+            this.maxSpeed.Scroll += new System.EventHandler(this.maxSpeed_Scroll);
+            // 
+            // colorValue
+            // 
+            this.colorValue.Location = new System.Drawing.Point(630, 208);
+            this.colorValue.Maximum = 4;
+            this.colorValue.Minimum = 1;
+            this.colorValue.Name = "colorValue";
+            this.colorValue.Size = new System.Drawing.Size(104, 45);
+            this.colorValue.TabIndex = 11;
+            this.colorValue.Value = 1;
+            this.colorValue.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 441);
+            this.Controls.Add(this.colorValue);
+            this.Controls.Add(this.maxSpeed);
+            this.Controls.Add(this.minSpeed);
             this.Controls.Add(this.yellowColorBox);
             this.Controls.Add(this.greenColorBox);
             this.Controls.Add(this.redColorBox);
@@ -152,6 +191,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.redColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yellowColorBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,6 +210,9 @@
         private System.Windows.Forms.PictureBox redColorBox;
         private System.Windows.Forms.PictureBox greenColorBox;
         private System.Windows.Forms.PictureBox yellowColorBox;
+        private System.Windows.Forms.TrackBar minSpeed;
+        private System.Windows.Forms.TrackBar maxSpeed;
+        private System.Windows.Forms.TrackBar colorValue;
     }
 }
 

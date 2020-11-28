@@ -10,11 +10,12 @@ namespace K2Coursework
     class Emitter
     {
         List<Particle> particles = new List<Particle>();
+
         public float GravitationX = 0;
         public float GravitationY = 1;
 
         public Color ColorFrom = Color.Blue; // начальный цвет частицы
-        public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
+        public Color ColorTo = Color.Black; // конечный цвет частиц
 
         public int Heights; //Высот
         public int Width; //ширин
@@ -28,7 +29,7 @@ namespace K2Coursework
         {
             var particle = new Particle.ParticleColorful();
             particle.FromColor = ColorFrom;
-            particle.ToColor = ColorTo;
+            particle.ToColor = Color.FromArgb(0, ColorTo);
 
             return particle;
         }
@@ -37,18 +38,21 @@ namespace K2Coursework
         {
             foreach (var particle in particles)
             {
-                particle.Life -= 1; 
-                if (particle.Life < 0)
+                if (particle.Life <= 0)
                 {
                     ResetParticle(particle);
                 }
                 else
                 {
-                    particle.SpeedX += GravitationX;
-                    particle.SpeedY += GravitationY;
 
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
+
+                    particle.Life -= 1;
+
+                    particle.SpeedX += GravitationX;
+                    particle.SpeedY += GravitationY;
+
                 }
             }
 
@@ -77,6 +81,7 @@ namespace K2Coursework
             {
                 particle.Draw(g);
             }
+
         }
 
         public virtual void ResetParticle(Particle particle)

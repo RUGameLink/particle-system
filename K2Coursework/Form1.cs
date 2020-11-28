@@ -12,10 +12,9 @@ namespace K2Coursework
 {
     public partial class Form1 : Form
     {
-        List<Particle> particles = new List<Particle>();
+        List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
         public int stoper;
-        Color temp = Color.Black;
 
 
         public Form1()
@@ -23,13 +22,16 @@ namespace K2Coursework
             InitializeComponent();
             canvas.Image = new Bitmap(canvas.Width, canvas.Height);
 
-            emitter = new Emitter
+            this.emitter = new Emitter
             {
                 Width = canvas.Width / 2,
                 Heights = canvas.Height,
+                ColorTo = Color.Black,
+                MinSpeed = 1,
+                MaxSpeed = 7
 
             };
-
+            emitters.Add(this.emitter);
         }
 
         private void starter_Click(object sender, EventArgs e)
@@ -76,7 +78,7 @@ namespace K2Coursework
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            emitter.ColorTo = Color.Red;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -84,20 +86,35 @@ namespace K2Coursework
 
         }
 
-        private void redColorBox_Click(object sender, EventArgs e)
+        private void minSpeed_Scroll(object sender, EventArgs e)
         {
-            temp = Color.Red;
+            emitter.MinSpeed = minSpeed.Value;
         }
 
-        private void greenColorBox_Click(object sender, EventArgs e)
+        private void maxSpeed_Scroll(object sender, EventArgs e)
         {
-            temp = Color.Green;
+            emitter.MaxSpeed = maxSpeed.Value;
         }
 
-        private void yellowColorBox_Click(object sender, EventArgs e)
+        private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            temp = Color.Yellow;
+            int value = colorValue.Value;
+            switch (value)
+            {
+                case 2:
+                    emitter.ColorTo = Color.Red;
+                    break;
+                case 3:
+                    emitter.ColorTo = Color.Green;
+                    break;
+                case 4:
+                    emitter.ColorTo = Color.Yellow;
+                    break;
+                default:
+                    emitter.ColorTo = Color.Black;
+                    break;
+            }
         }
-        
+
     }
 }
