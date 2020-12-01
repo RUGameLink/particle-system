@@ -7,48 +7,56 @@ using System.Threading.Tasks;
 
 namespace K2Coursework
 {
-    class Emitter
+    public class Emitter
     {
         List<Particle> particles = new List<Particle>();
+
+        public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
+
+        public int Width;
+        public int Height;
+
+        public int MousePositionX;
+        public int MousePositionY;
 
         public float GravitationX = 0;
         public float GravitationY = 1;
 
-        public Color ColorFrom = Color.Blue; // начальный цвет частицы
-        public Color ColorTo = Color.Black; // конечный цвет частиц
+        public int ParticlesPerTick = 10;
 
-        public int Heights; //Высот
-        public int Width; //ширин
+        public int SpeedMin = 1;
+        public int SpeedMax = 10;
 
-        public int MinSpeed = 1;
-        public int MaxSpeed = 7;
-
-        public int ParticlesCount = 500;
-
-        public virtual Particle CreateParticle()
-        {
-            var particle = new Particle.ParticleColorful();
-            particle.FromColor = ColorFrom;
-            particle.ToColor = Color.FromArgb(0, ColorTo);
-
-            return particle;
-        }
+        public Color ColorFrom = Color.Blue;
+        public Color ColorTo = Color.FromArgb(0, Color.Blue);
 
         public void UpdateState()
         {
+            int particlesToCreate = ParticlesPerTick;
+
             foreach (var particle in particles)
             {
+                particle.Life -= 1;
                 if (particle.Life <= 0)
                 {
                     ResetParticle(particle);
+
+                    if (particlesToCreate > 0)
+                    {
+                        particlesToCreate -= 1;
+                        ResetParticle(particle);
+                    }
                 }
                 else
                 {
-
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
 
-                    particle.Life -= 1;
+                    foreach (var point in impactPoints)
+                    {
+                        point.ImpactParticle(particle);
+                    }
+
 
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
@@ -56,22 +64,34 @@ namespace K2Coursework
                 }
             }
 
-            for (var i = 0; i < 10; ++i)
+            while (particlesToCreate >= 1)
             {
-                if (particles.Count < ParticlesCount)
-                {
-                    var particle = CreateParticle();
+                particlesToCreate -= 1;
+                var particle = CreateParticle();
+                ResetParticle(particle);
+                particles.Add(particle);
+            }
+        }
 
-                    particle.X = Width;
-                    particle.Y = Heights;
+        public virtual void ResetParticle(Particle particle)
+        {
+            particle.Life = Particle.rand.Next(100);
+            particle.X = Width;
+            particle.Y = Height;
 
-                    ResetParticle(particle);
-                    particles.Add(particle);
-                }
-                else
-                {
-                    break;
-                }
+
+            var direction = 20 + (double)Particle.rand.Next(140);
+            var speed = Particle.rand.Next(SpeedMin, SpeedMax);
+
+            particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+            particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * 4 * speed);
+
+            particle.Radius = 2 + Particle.rand.Next(5);
+
+            if (particle.Life > 0)
+            {
+                var color = particle as ParticleColorful;
+                color.FromColor = Color.Blue;
             }
         }
 
@@ -82,22 +102,18 @@ namespace K2Coursework
                 particle.Draw(g);
             }
 
+            foreach (var point in impactPoints)
+            {
+                point.Render(g);
+            }
         }
-
-        public virtual void ResetParticle(Particle particle)
+        public virtual Particle CreateParticle()
         {
-            particle.Life = 20 + Particle.rand.Next(60);
+            var particle = new ParticleColorful();
+            particle.FromColor = ColorFrom;
+            particle.ToColor = ColorTo;
 
-            particle.X = Width;
-            particle.Y = Heights;
-
-            particle.Radius = 2 + Particle.rand.Next(5);
-
-            var direction = (double)30 + Particle.rand.Next(120);
-            var speed = MinSpeed + Particle.rand.Next(MaxSpeed);
-
-            particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
-            particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * 4 * speed);
+            return particle;
         }
     }
 }
