@@ -110,6 +110,7 @@ namespace K2Coursework
             {
                 var color = particle as ParticleColorful;
                 color.FromColor = RoundColor;
+                color.ToColor = RoundColor;
             }
         }
 

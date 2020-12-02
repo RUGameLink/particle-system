@@ -34,11 +34,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.blueColorBox = new System.Windows.Forms.PictureBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.pinkColorBox = new System.Windows.Forms.PictureBox();
             this.redColorBox = new System.Windows.Forms.PictureBox();
-            this.greenColorBox = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
@@ -48,17 +45,24 @@
             this.label4 = new System.Windows.Forms.Label();
             this.stopBut = new System.Windows.Forms.Button();
             this.startBut = new System.Windows.Forms.Button();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.trackBar4 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.blueColorBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pinkColorBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.redColorBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.greenColorBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -78,14 +82,11 @@
             // 
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.blueColorBox);
             this.groupBox2.Controls.Add(this.trackBar1);
-            this.groupBox2.Controls.Add(this.pinkColorBox);
             this.groupBox2.Controls.Add(this.redColorBox);
-            this.groupBox2.Controls.Add(this.greenColorBox);
-            this.groupBox2.Location = new System.Drawing.Point(825, 300);
+            this.groupBox2.Location = new System.Drawing.Point(825, 427);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(163, 259);
+            this.groupBox2.Size = new System.Drawing.Size(163, 149);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Изменение цвета";
@@ -108,16 +109,6 @@
             this.label5.TabIndex = 29;
             this.label5.Text = "Положение закрашивалки";
             // 
-            // blueColorBox
-            // 
-            this.blueColorBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.blueColorBox.Location = new System.Drawing.Point(3, 206);
-            this.blueColorBox.Name = "blueColorBox";
-            this.blueColorBox.Size = new System.Drawing.Size(104, 28);
-            this.blueColorBox.TabIndex = 34;
-            this.blueColorBox.TabStop = false;
-            this.blueColorBox.Click += new System.EventHandler(this.blueColorBox_Click);
-            // 
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(0, 40);
@@ -129,19 +120,9 @@
             this.trackBar1.Value = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
-            // pinkColorBox
-            // 
-            this.pinkColorBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.pinkColorBox.Location = new System.Drawing.Point(3, 172);
-            this.pinkColorBox.Name = "pinkColorBox";
-            this.pinkColorBox.Size = new System.Drawing.Size(104, 28);
-            this.pinkColorBox.TabIndex = 33;
-            this.pinkColorBox.TabStop = false;
-            this.pinkColorBox.Click += new System.EventHandler(this.pinkColorBox_Click);
-            // 
             // redColorBox
             // 
-            this.redColorBox.BackColor = System.Drawing.Color.Red;
+            this.redColorBox.BackColor = System.Drawing.Color.Black;
             this.redColorBox.Location = new System.Drawing.Point(3, 104);
             this.redColorBox.Name = "redColorBox";
             this.redColorBox.Size = new System.Drawing.Size(104, 28);
@@ -149,18 +130,11 @@
             this.redColorBox.TabStop = false;
             this.redColorBox.Click += new System.EventHandler(this.redColorBox_Click);
             // 
-            // greenColorBox
-            // 
-            this.greenColorBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.greenColorBox.Location = new System.Drawing.Point(3, 138);
-            this.greenColorBox.Name = "greenColorBox";
-            this.greenColorBox.Size = new System.Drawing.Size(104, 28);
-            this.greenColorBox.TabIndex = 32;
-            this.greenColorBox.TabStop = false;
-            this.greenColorBox.Click += new System.EventHandler(this.greenColorBox_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.trackBar4);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.trackBar2);
             this.groupBox1.Controls.Add(this.minSpeed);
@@ -169,7 +143,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(825, 80);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(163, 209);
+            this.groupBox1.Size = new System.Drawing.Size(163, 324);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Корректировка потока";
@@ -208,12 +182,12 @@
             // maxSpeed
             // 
             this.maxSpeed.Location = new System.Drawing.Point(0, 169);
-            this.maxSpeed.Maximum = 15;
+            this.maxSpeed.Maximum = 40;
             this.maxSpeed.Minimum = 8;
             this.maxSpeed.Name = "maxSpeed";
             this.maxSpeed.Size = new System.Drawing.Size(104, 45);
             this.maxSpeed.TabIndex = 21;
-            this.maxSpeed.Value = 8;
+            this.maxSpeed.Value = 10;
             this.maxSpeed.Scroll += new System.EventHandler(this.maxSpeed_Scroll);
             // 
             // label3
@@ -254,11 +228,91 @@
             this.startBut.UseVisualStyleBackColor = true;
             this.startBut.Click += new System.EventHandler(this.startBut_Click);
             // 
+            // trackBar3
+            // 
+            this.trackBar3.Location = new System.Drawing.Point(1027, 201);
+            this.trackBar3.Maximum = 1;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(85, 45);
+            this.trackBar3.TabIndex = 42;
+            this.trackBar3.Scroll += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1024, 185);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 43;
+            this.label6.Text = "Патриот мод";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1004, 201);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(27, 13);
+            this.label7.TabIndex = 44;
+            this.label7.Text = "OFF";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1108, 201);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 13);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "ON";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1027, 300);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 46;
+            this.button1.Text = "I\'m step";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 217);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(103, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Количество чaстиц";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Maroon;
+            this.label10.Location = new System.Drawing.Point(15, 281);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 13);
+            this.label10.TabIndex = 48;
+            // 
+            // trackBar4
+            // 
+            this.trackBar4.Location = new System.Drawing.Point(0, 233);
+            this.trackBar4.Maximum = 1000;
+            this.trackBar4.Minimum = 10;
+            this.trackBar4.Name = "trackBar4";
+            this.trackBar4.Size = new System.Drawing.Size(104, 45);
+            this.trackBar4.TabIndex = 47;
+            this.trackBar4.Value = 10;
+            this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 630);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.trackBar3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.stopBut);
@@ -270,17 +324,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.blueColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pinkColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.redColorBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.greenColorBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -291,11 +345,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox blueColorBox;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.PictureBox pinkColorBox;
         private System.Windows.Forms.PictureBox redColorBox;
-        private System.Windows.Forms.PictureBox greenColorBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar trackBar2;
@@ -305,6 +356,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button stopBut;
         private System.Windows.Forms.Button startBut;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TrackBar trackBar4;
     }
 }
 

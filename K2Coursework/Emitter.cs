@@ -27,6 +27,9 @@ namespace K2Coursework
         public int SpeedMin = 1;
         public int SpeedMax = 10;
 
+        public int MinRad = 20;
+        public int MaxRad = 140;
+
         public Color ColorFrom = Color.Blue;
         public Color ColorTo = Color.FromArgb(0, Color.Blue);
 
@@ -80,7 +83,7 @@ namespace K2Coursework
             particle.Y = Height;
 
 
-            var direction = 20 + (double)Particle.rand.Next(140);
+            var direction = MinRad + (double)Particle.rand.Next(MaxRad);
             var speed = Particle.rand.Next(SpeedMin, SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
@@ -92,6 +95,7 @@ namespace K2Coursework
             {
                 var color = particle as ParticleColorful;
                 color.FromColor = Color.Blue;
+                color.ToColor = Color.Blue;
             }
         }
 

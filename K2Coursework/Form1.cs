@@ -16,7 +16,14 @@ namespace K2Coursework
         public bool start;
         Emitter emitter;
 
+        Color BGColor = Color.White;
+
         PaintPoint point1;
+        PaintPoint patriotpoint1;
+        PaintPoint patriotpoint2;
+        PaintPoint patriotpoint3;
+
+
 
 
         public Form1()
@@ -27,7 +34,8 @@ namespace K2Coursework
             {
                 Width = canvas.Width / 2,
                 Height = canvas.Height,
-                GravitationY = 1
+                GravitationY = 1,
+                ParticlesPerTick = 10
             };
 
             canvas.Image = new Bitmap(canvas.Width, canvas.Height);
@@ -38,6 +46,8 @@ namespace K2Coursework
                 Y = canvas.Height - 70,
                 RoundColor = Color.Black
             };
+
+            this.MouseWheel += new MouseEventHandler(this_MouseWheel);
 
             // антигравитон
             //       emitter.impactPoints.Add(new AntiGravityPoint
@@ -59,6 +69,15 @@ namespace K2Coursework
             trackBar1.Maximum = canvas.Width - 50;
         }
 
+        void this_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+                point1.Power += 5;
+            else
+                point1.Power -= 5;
+        }
+
+
         private void startBut_Click(object sender, EventArgs e)
         {
             timer1.Enabled = true;
@@ -78,7 +97,7 @@ namespace K2Coursework
 
             using (var g = Graphics.FromImage(canvas.Image))
             {
-                g.Clear(Color.White);
+                g.Clear(BGColor);
                 emitter.Render(g);
             }
 
@@ -118,22 +137,12 @@ namespace K2Coursework
 
         private void redColorBox_Click(object sender, EventArgs e)
         {
-            point1.RoundColor = Color.Red;
-        }
-
-        private void greenColorBox_Click(object sender, EventArgs e)
-        {
-            point1.RoundColor = Color.Green;
-        }
-
-        private void pinkColorBox_Click(object sender, EventArgs e)
-        {
-            point1.RoundColor = Color.HotPink;
-        }
-
-        private void blueColorBox_Click(object sender, EventArgs e)
-        {
-            point1.RoundColor = Color.Blue;
+            var colorDialog = new ColorDialog();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                point1.RoundColor = colorDialog.Color;
+                redColorBox.BackColor = colorDialog.Color;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -141,5 +150,64 @@ namespace K2Coursework
 
         }
 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(trackBar3.Value == 1)
+            {
+                BGColor = Color.Black;
+
+                patriotpoint1 = new PaintPoint
+                {
+                    X = (float)(canvas.Width / 2),
+                    Y = canvas.Height - 80,
+                    RoundColor = Color.Red
+                };
+                emitter.impactPoints.Add(patriotpoint1);
+
+                patriotpoint2 = new PaintPoint
+                {
+                    X = (float)(canvas.Width / 2),
+                    Y = canvas.Height - 320,
+                    RoundColor = Color.White,
+                    Power = 140
+                };
+                emitter.impactPoints.Add(patriotpoint2);
+
+                patriotpoint3 = new PaintPoint
+                {
+                    X = (float)(canvas.Width / 2),
+                    Y = canvas.Height - 190,
+                    RoundColor = Color.Blue
+                };
+                emitter.impactPoints.Add(patriotpoint3);
+                emitter.ParticlesPerTick = 20;
+                emitter.SpeedMax = 20;
+                emitter.MinRad = 40;
+                emitter.MaxRad = 100;
+            }
+            else
+            {
+                BGColor = Color.White;
+                emitter.impactPoints.Remove(patriotpoint1);
+                emitter.impactPoints.Remove(patriotpoint2);
+                emitter.impactPoints.Remove(patriotpoint3);
+                emitter.ParticlesPerTick = 10;
+                emitter.SpeedMax = maxSpeed.Value;
+                emitter.MinRad = 20;
+                emitter.MaxRad = 140;
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            emitter.UpdateState();
+        }
+
+        private void trackBar4_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = trackBar4.Value;
+            label10.Text = $"Количество чaстиц: {emitter.ParticlesPerTick}";
+        }
     }
 }
