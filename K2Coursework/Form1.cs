@@ -13,6 +13,8 @@ namespace K2Coursework
     public partial class Form1 : Form
     {
         List<Particle> particles = new List<Particle>();
+        List<Emitter> emitters = new List<Emitter>();
+
         public bool start;
         Emitter emitter;
 
@@ -30,13 +32,14 @@ namespace K2Coursework
         {
             InitializeComponent();
 
-            emitter = new Emitter
+            this.emitter = new Emitter
             {
                 Width = canvas.Width / 2,
                 Height = canvas.Height,
                 GravitationY = 1,
                 ParticlesPerTick = 10
             };
+            emitters.Add(this.emitter);
 
             canvas.Image = new Bitmap(canvas.Width, canvas.Height);
 
@@ -100,7 +103,6 @@ namespace K2Coursework
                 g.Clear(BGColor);
                 emitter.Render(g);
             }
-
 
             canvas.Invalidate();
         }
@@ -180,6 +182,7 @@ namespace K2Coursework
                     RoundColor = Color.Blue
                 };
                 emitter.impactPoints.Add(patriotpoint3);
+                emitter.particles.Clear();
                 emitter.ParticlesPerTick = 20;
                 emitter.SpeedMax = 20;
                 emitter.MinRad = 40;
@@ -191,6 +194,7 @@ namespace K2Coursework
                 emitter.impactPoints.Remove(patriotpoint1);
                 emitter.impactPoints.Remove(patriotpoint2);
                 emitter.impactPoints.Remove(patriotpoint3);
+                emitter.particles.Clear();
                 emitter.ParticlesPerTick = 10;
                 emitter.SpeedMax = maxSpeed.Value;
                 emitter.MinRad = 20;
@@ -206,6 +210,7 @@ namespace K2Coursework
 
         private void trackBar4_Scroll(object sender, EventArgs e)
         {
+            emitter.particles.Clear();
             emitter.ParticlesPerTick = trackBar4.Value;
             label10.Text = $"Количество чaстиц: {emitter.ParticlesPerTick}";
         }
