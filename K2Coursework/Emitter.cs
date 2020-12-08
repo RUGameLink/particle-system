@@ -13,6 +13,7 @@ namespace K2Coursework
 
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
+
         public int Width;
         public int Height;
 
@@ -26,6 +27,8 @@ namespace K2Coursework
 
         public int SpeedMin = 1;
         public int SpeedMax = 10;
+
+        public int Direction = 1;
 
         public int MinRad = 20;
         public int MaxRad = 140;
@@ -83,7 +86,7 @@ namespace K2Coursework
             particle.Y = Height;
 
 
-            var direction = MinRad + (double)Particle.rand.Next(MaxRad);
+            var direction = Direction + MinRad + (double)Particle.rand.Next(MaxRad);
             var speed = Particle.rand.Next(SpeedMin, SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
@@ -94,8 +97,8 @@ namespace K2Coursework
             if (particle.Life > 0)
             {
                 var color = particle as ParticleColorful;
-                color.FromColor = Color.Blue;
-                color.ToColor = Color.Blue;
+                color.FromColor = ColorFrom;
+                color.ToColor = ColorTo;
             }
         }
 

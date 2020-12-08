@@ -25,7 +25,8 @@ namespace K2Coursework
         PaintPoint patriotpoint2;
         PaintPoint patriotpoint3;
 
-
+        public int MouseX;
+        public int MouseY;
 
 
         public Form1()
@@ -41,6 +42,7 @@ namespace K2Coursework
             };
             emitters.Add(this.emitter);
 
+
             canvas.Image = new Bitmap(canvas.Width, canvas.Height);
 
             point1 = new PaintPoint
@@ -52,21 +54,8 @@ namespace K2Coursework
 
             this.MouseWheel += new MouseEventHandler(this_MouseWheel);
 
-            // антигравитон
-            //       emitter.impactPoints.Add(new AntiGravityPoint
-            //      {
-            //          X = canvas.Width / 2,
-            //          Y = canvas.Height / 2
-            //      });
-            /*
-                        //  гравитон
-                        emitter.impactPoints.Add(new PaintPoint
-                        {
-                            X = (float)(canvas.Width * 0.75),
-                            Y = canvas.Height / 2
-                        });
-            */
             emitter.impactPoints.Add(point1);
+
 
             trackBar1.Minimum = 55;
             trackBar1.Maximum = canvas.Width - 50;
@@ -103,13 +92,18 @@ namespace K2Coursework
                 g.Clear(BGColor);
                 emitter.Render(g);
             }
-
             canvas.Invalidate();
         }
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
             emitter.MousePositionX = e.X;
             emitter.MousePositionY = e.Y;
+
+            MouseX = e.X;
+            MouseY = e.Y;
+
+          //  killerPoint1.X = e.X;
+          //  killerPoint1.Y = e.Y;
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
@@ -213,6 +207,28 @@ namespace K2Coursework
             emitter.particles.Clear();
             emitter.ParticlesPerTick = trackBar4.Value;
             label10.Text = $"Количество чaстиц: {emitter.ParticlesPerTick}";
+        }
+        CounterPoint killerPoint1;
+        private void canvas_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Left)
+            {
+                emitter.impactPoints.Remove(this.killerPoint1);
+                killerPoint1 = new CounterPoint
+                {
+                    X = MouseX,
+                    Y = MouseY
+                };
+
+                emitter.impactPoints.Add(killerPoint1);
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+
+                emitter.impactPoints.Remove(killerPoint1);
+            }
         }
     }
 }

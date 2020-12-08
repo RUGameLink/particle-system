@@ -126,18 +126,44 @@ namespace K2Coursework
         }
     }
 
-    public class AntiGravityPoint : IImpactPoint
+    public class CounterPoint : IImpactPoint
     {
         public int Power = 100;
+        int count = 0;
 
         public override void ImpactParticle(Particle particle)
         {
             float gX = X - particle.X;
             float gY = Y - particle.Y;
-            float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+            double r = Math.Sqrt(gX * gX + gY * gY);
+            
+            if (r + particle.Radius < Power / 2)
+            {
+                count ++;
+                particle.Life = 0;
+                var color = particle as ParticleColorful;
+                color.FromColor = Color.Gold;
+                color.ToColor = Color.Gold;
+            }
+        }
 
-            particle.SpeedX -= gX * Power / r2;
-            particle.SpeedY -= gY * Power / r2;
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(
+                   new Pen(Color.Red, 5),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power,
+                   Power
+               );
+
+            g.DrawString(
+            $"Я убил {count} \n чaстиц\nсегодня",
+            new Font("Verdana", 10),
+            new SolidBrush(Color.Black), 
+            X - 25,
+            Y - 10
+            );
         }
     }
 }
