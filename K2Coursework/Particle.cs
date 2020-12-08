@@ -96,7 +96,7 @@ namespace K2Coursework
         }
     }
 
-    public class PaintPoint : IImpactPoint
+    public class PaintPoint : IImpactPoint //круг-зaкрaшивaтель
     {
         public int Power = 100;
 
@@ -126,7 +126,7 @@ namespace K2Coursework
         }
     }
 
-    public class CounterPoint : IImpactPoint
+    public class CounterPoint : IImpactPoint //круг-убийцa
     {
         public int Power = 100;
         int count = 0;

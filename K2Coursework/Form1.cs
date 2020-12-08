@@ -64,9 +64,19 @@ namespace K2Coursework
         void this_MouseWheel(object sender, MouseEventArgs e)
         {
             if (e.Delta > 0)
-                point1.Power += 5;
-            else
-                point1.Power -= 5;
+            {
+                if (point1.Power < 359)
+                {
+                    point1.Power += 15;
+                }
+            }
+            else if (e.Delta < 0)
+            {
+                if (point1.Power > 20)
+                {
+                    point1.Power -= 15;
+                }
+            }
         }
 
 
@@ -146,7 +156,7 @@ namespace K2Coursework
 
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void radioButton1_CheckedChanged(object sender, EventArgs e) //Пaтриот мод
         {
             if(trackBar3.Value == 1)
             {
